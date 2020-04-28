@@ -5,10 +5,13 @@
             <component
                 :is="$getComponent('cardTitle')"
                 :caption="partner.id"
-                :title="partner.name || 'Nov partner'"
+                :title="partner.name || 'New partner'"
             >
                 <!-- BIG SCREEN OPTIONS -->
-                <template v-slot:buttons v-if="formDisabled">
+                <template
+                    v-slot:buttons
+                    v-if="formDisabled === '123'"
+                >
                     <!-- ORDERS -->
                     <div>
                         <component
@@ -117,13 +120,12 @@
 
                 btnOrders:{
                     color: "positive",
-                    tooltip: "Pregled porudžbina",
-                    label: 'Porudžbine',
+                    label: 'Orders',
                     icon: 'view_list'
                 },
                 btnListSideActions:[
-                    { label: 'Ažuriranje partnera', fn: this.formEdit },
-                    { label: 'Porudžbine', fn: this.ordersView },
+                    { label: 'Update', fn: this.formEdit },
+                    // { label: 'Porudžbine', fn: this.ordersView },
                 ],
 
                 formDisabled: this.partner.id !== '',
@@ -149,8 +151,7 @@
             setBtnEdit(){
                 this.btnEdit = {
                     color: "primary",
-                    tooltip: "Ažuriraj podatke o partneru",
-                    label: this.$winSize === 'big' ? 'Ažuriraj' : '',
+                    label: this.$winSize === 'big' ? 'Update' : '',
                     icon: 'edit'
                 }
             },
@@ -158,8 +159,7 @@
             setBtnReset(){
                 this.btnReset = {
                     color: "negative",
-                    tooltip: "Odustani od ažuriranja partnera",
-                    label: this.$winSize === 'big' ? 'Odustani' : '',
+                    label: this.$winSize === 'big' ? 'Cancel' : '',
                     icon: 'close',
                     type: 'reset'
                 }
@@ -168,8 +168,7 @@
             setBtnSave(){
                 this.btnSave = {
                     color: "positive",
-                    tooltip: "Sačuvaj izmene nad partnerom",
-                    label: this.$winSize === 'big' ? 'Sačuvaj' : '',
+                    label: this.$winSize === 'big' ? 'Save' : '',
                     icon: 'save',
                     type: 'submit'
                 }
@@ -198,17 +197,17 @@
                 });
 
                 const dialogObj = {
-                    title: `${this.partner.id ? 'Ažuriranje' : 'Unos' } partnera`,
+                    title: `${this.partner.id ? 'Update' : 'Insert' } partner`,
                     icon: 'warning',
-                    message: `Da li želite da ${this.partner.id ? 'ažurirate' : 'unesete' } partnera?`,
+                    message: `Are you sure you want to ${this.partner.id ? 'update' : 'insert' } partner?`,
                     ok: {
                         push: true,
-                        label: 'Da',
+                        label: 'Yes',
                         color: 'negative'
                     },
                     cancel: {
                         push: true,
-                        label: 'Ne',
+                        label: 'No',
                         color: 'positive'
                     },
                 }

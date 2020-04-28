@@ -76,14 +76,14 @@
           this.$store.dispatch('partners/partnersInit', event, { root: true });
       },
 
-    partnerView(partner){
-      this.$router.push({
-        path: `/partners/partner`,
-        query: {
-          partnerId: partner ? partner.id : null
-        }
-      })
-    }
+      partnerView(partner){
+        this.$router.push({
+          path: `/partners/partner`,
+          query: {
+            partnerId: partner ? partner.id : null
+          }
+        })
+      }
     },
   }
 </script>

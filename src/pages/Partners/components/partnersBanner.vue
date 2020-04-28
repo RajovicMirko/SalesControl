@@ -29,7 +29,7 @@
     data(){
       return{
         bnrSettup: {
-          title: 'Partneri',
+          title: 'Partners',
           titleClass: 'big'
         },
 
@@ -52,7 +52,7 @@
     methods:{
       checkSettupFn(){
         this.checkSettup = {
-          label: this.$winSize === 'big' ? 'Prikaži samo aktivne' : 'Aktivni',
+          label: this.$winSize === 'big' ? 'Show active only' : 'Active',
           leftLabel: true,
           dark: true
         }

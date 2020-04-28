@@ -44,7 +44,7 @@ const routes = [
           to: '/partners'
         },
         meta:{
-          name: 'Partneri',
+          name: Partners.name,
           description: 'Pregled svih partnera',
         },
         children:[
@@ -78,20 +78,20 @@ const routes = [
           }
         ]
       },
-      {
-        path: 'report',
-        component: Report,
-        name: Report.name,
-        drowerSettings:{
-          title: Report.name,
-          icon: 'description',
-          to: '/report'
-        },
-        meta:{
-          name: 'Izveštaj',
-          description: 'Izveštavanja',
-        }
-      },
+      // {
+      //   path: 'report',
+      //   component: Report,
+      //   name: Report.name,
+      //   drowerSettings:{
+      //     title: Report.name,
+      //     icon: 'description',
+      //     to: '/report'
+      //   },
+      //   meta:{
+      //     name: 'Izveštaj',
+      //     description: 'Izveštavanja',
+      //   }
+      // },
     ]
   }
 ];

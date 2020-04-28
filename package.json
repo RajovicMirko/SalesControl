@@ -1,11 +1,11 @@
 {
   "name": "evidencija_prodaje",
   "version": "0.0.1",
-  "description": "Upravljanje prodajom i izveštavanje",
-  "productName": "Evidencija prodaje",
+  "description": "Sales control application",
+  "productName": "Sales control",
   "cordovaId": "org.cordova.quasar.app",
   "capacitorId": "",
-  "author": "Mirko Rajovic <Mirko.Rajovic@gemikro.rs>",
+  "author": "Mirko Rajovic <rajovicmirko@gmail.com>",
   "private": true,
   "scripts": {
     "test": "echo \"No test specified\" && exit 0"

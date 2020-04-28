@@ -24,10 +24,6 @@
             ></component>
           </div>
 
-          <div class="big">
-            User: {{ user.name }}
-          </div>
-
       </q-toolbar>
     </q-header>
 
@@ -41,9 +37,11 @@
       <q-list>
         <q-item-label
           header
-          class="text-grey-8"
+          class="text-grey-8 row"
         >
-          Navigacija
+          <div>Navigation</div>
+          <q-space />
+          <div>User: {{ user.name }}</div>
         </q-item-label>
         <EssentialLink
           v-for="link in essentialLinks"

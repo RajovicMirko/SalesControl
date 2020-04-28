@@ -34,7 +34,7 @@ export class Partner{
             {
                 id: 'name',
                 name: 'inPut',
-                label: 'Naziv partnera',
+                label: 'Name',
                 rules: [
                     val => !!val
                 ]
@@ -42,7 +42,7 @@ export class Partner{
             {
                 id: 'mob',
                 name: 'inPut',
-                label: 'Mobilni telefon',
+                label: 'Phone',
                 rules: [
                     val => !!val
                 ]
@@ -55,7 +55,7 @@ export class Partner{
             {
                 id: 'active',
                 name: 'check',
-                label: 'Aktivan partner',
+                label: 'Is active',
                 leftLabel: true
             }
         ];
@@ -71,13 +71,13 @@ export class Partner{
             {
                 type: 'lbl',
                 name: 'name',
-                caption: 'Naziv partnera',
+                caption: 'Name',
                 label: this.name
             },
             {
                 type: 'lbl',
                 name: 'mob',
-                caption: 'Broj telefona',
+                caption: 'Phone',
                 label: this.mob ? formatPhoneNumber(this.mob, 'default') : '',
                 class: 'big'
             },
@@ -91,7 +91,7 @@ export class Partner{
             {
                 type: 'check',
                 name: 'active',
-                label: 'Aktivan',
+                label: 'Is active',
                 leftLabel: true,
                 disable: true,
                 value: this.active
