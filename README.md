@@ -7,8 +7,9 @@ Upravljanje prodajom i izveštavanje
 npm install
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+### Start the app in development mode (hot-code reloading, error reporting, etc.). Open two terminals to root of folder and use:
 ```bash
+nodemon/node server.js
 quasar dev
 ```
 
