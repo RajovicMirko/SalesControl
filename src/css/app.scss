@@ -1,0 +1,150 @@
+// app global css in SCSS form
+main{
+    padding: $page-padding;
+}
+
+.router-view-main-custom{
+    padding: 0px !important;
+}
+
+.breadcrumb-layout{
+    margin: 5px;
+    font-style: italic;
+    font-size: 14px;
+}
+
+.banner-custom{
+    padding: 0px;
+
+    &-item{
+        @extend .banner-custom;
+    }
+
+    &-item-title{
+        @extend .banner-custom;
+        padding: 8px 16px;
+        font-size: 20px;
+    }
+
+    &-item-center{
+        @extend .banner-custom;
+    }
+
+    &-item-center2{
+        @extend .banner-custom;
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    &-item-right{
+        @extend .banner-custom;
+    }
+}
+
+.q-form-partner{
+    width: 100%;
+}
+
+.q-card{
+    padding: 5px;
+
+    &-title{
+        @extend .q-card;
+    }
+
+    &-partner-form{
+        @extend .q-card;
+        display: flex;
+        padding: 0 10px;
+        width: 100%;
+    
+        &-items{
+            @extend .q-card-partner-form;
+            margin-bottom: 5px;
+        }
+    
+        &-actions{
+            @extend .q-card-partner-form;
+            margin: 10px 10px 5px 10px;
+        }
+    }
+
+    &__actions{
+        @extend .q-card;
+        padding: 0;
+        margin: 10px 30px 5px 30px;
+    }
+}
+
+
+
+.q-breadcrumbs{
+    line-height: 1;
+    padding: 0 0 5px 0;
+    font-style: italic;
+}
+
+.q-dialog-plugin-custom{
+    padding: 0;
+    margin: 0;
+
+    &-title{
+        @extend .q-dialog-plugin-custom;
+        font-size: 20px;
+        font-weight: bold;
+        color: $white;
+        text-align: center;
+        background-color: $primary;
+        padding: $dialog-title-padding;
+    }
+
+    &-body{
+        @extend .q-dialog-plugin-custom;
+
+        &-message{
+            @extend .q-dialog-plugin-custom;
+            padding: 10px;
+    
+            &-avatar{
+                @extend .q-dialog-plugin-custom;
+                margin: 5px;
+        
+                &-icon{
+                    @extend .q-dialog-plugin-custom;
+                    font-size: 25px;
+                }
+            }
+    
+            &-text{
+                @extend .q-dialog-plugin-custom;
+                margin: 5px;
+            }
+        }
+    }
+
+    &-actions{
+        @extend .q-dialog-plugin-custom;
+        margin: 5px;
+        
+        &-cancel{
+            @extend .q-dialog-plugin-custom;
+        }
+        
+        &-ok{
+            @extend .q-dialog-plugin-custom;
+        }
+    }
+
+}
+
+@media (max-width: $layout-breakpoint-small){
+    .big{
+        display: none;
+    }
+}
+
+@media (min-width: $layout-breakpoint-small){
+    .small{
+        display: none;
+    }
+}
