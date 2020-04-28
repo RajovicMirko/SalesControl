@@ -5,7 +5,7 @@
             <component
                 :is="$getComponent('cardTitle')"
                 :caption="partner.id"
-                :title="partner.name"
+                :title="partner.name || 'Nov partner'"
             >
                 <!-- BIG SCREEN OPTIONS -->
                 <template v-slot:buttons v-if="formDisabled">
@@ -126,7 +126,7 @@
                     { label: 'Porudžbine', fn: this.ordersView },
                 ],
 
-                formDisabled: true,
+                formDisabled: this.partner.id !== '',
                 partnerModel: {},
                 path: this.$router.currentRoute.fullPath,
             }
@@ -138,7 +138,7 @@
 
         computed:{
             formDefinition(){
-                if(this.partner.id){
+                if(this.partner.id || this.partner.id === ''){
                     this.partnerModel = Object.assign({}, this.partner.getModel());
                     return Object.assign({}, this.partner.getFormModel());
                 }
@@ -198,9 +198,9 @@
                 });
 
                 const dialogObj = {
-                    title: 'Ažuriranje partnera',
+                    title: `${this.partner.id ? 'Ažuriranje' : 'Unos' } partnera`,
                     icon: 'warning',
-                    message: 'Da li želite da ažurirate partnera?',
+                    message: `Da li želite da ${this.partner.id ? 'ažurirate' : 'unesete' } partnera?`,
                     ok: {
                         push: true,
                         label: 'Da',
@@ -219,8 +219,13 @@
                             this.$dialog(
                                 dialogObj,
                                 ()=>{
-                                    this.$emit('partnerUpdate', formObj);
-                                    this.formReset();
+                                    if(this.partner.id){
+                                        this.$emit('updatePartner', formObj);
+                                        this.formReset();
+                                    } else {
+                                        this.$emit('insertPartner', formObj);
+                                        this.formReset();
+                                    }
                                 },
                                 ()=>{
                                     this.formReset();

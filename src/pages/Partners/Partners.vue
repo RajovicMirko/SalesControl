@@ -26,7 +26,17 @@
           @click="partnerView(partner)"
         ></component>
       </q-list>
+
+      <!-- ADD NEW PARTNER BUTTON -->
+      <q-page-sticky position="bottom" :offset="[0, 20]">
+        <component
+          :is="$getComponent('btn')"
+          v-bind="btnDef"
+          @click="partnerView()"
+        ></component>
+      </q-page-sticky>
     </div>
+
     
     <!-- ROUTER VIEW FOR PARTNERS CHILD PAGES -->
     <router-view class="router-view-main-custom" />
@@ -37,9 +47,18 @@
   export default {
     name: 'Partners',
 
+    data(){
+      return{
+        btnDef:{
+          icon: 'add',
+          round: true,
+          size: '18px'
+        }
+      }
+    },
+
     created(){
       this.$reponsiveControl.start();
-      //this.$store.dispatch('partners/partnersInit', null, {root: true});
     },
     
     destroyed(){
@@ -60,7 +79,9 @@
     partnerView(partner){
       this.$router.push({
         path: `/partners/partner`,
-        query: { partnerId: partner.id }
+        query: {
+          partnerId: partner ? partner.id : null
+        }
       })
     }
     },

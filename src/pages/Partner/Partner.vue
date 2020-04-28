@@ -1,16 +1,17 @@
 <template>
   <q-page>
     <div
-      v-if="this.$router.currentRoute.name === 'Partner' && partner.id"
+      v-if="this.$router.currentRoute.name === 'Partner' && partner"
     > 
       <component
         :is="$getComponent('partnerForm')"
         v-bind.sync="{ partner }"
         @ordersView="ordersView"
-        @partnerUpdate="partnerUpdate($event)"
+        @updatePartner="updatePartner($event)"
+        @insertPartner="insertPartner($event)"
       ></component>
     </div>
-
+    
     <router-view class="router-view-main-custom" />
   </q-page>
 </template>
@@ -18,9 +19,14 @@
 <script>
   export default {
     name: 'Partner',
+    data(){
+      return{
+        partnerId: this.$router.currentRoute.query.partnerId
+      }
+    },
 
     beforeMount() {
-      this.$store.dispatch('partner/setPartner', this.$router.currentRoute.query.partnerId, { root: true });
+      this.$store.dispatch('partner/setPartner', this.partnerId, { root: true });
     },
 
     destroyed(){
@@ -41,9 +47,14 @@
         })
       },
 
-      async partnerUpdate(partner){
+      async updatePartner(partner){
         const res = await this.$store.dispatch('partner/updatePartner', partner, {root: true});
+      },
+
+      async insertPartner(partner){
+        const res = await this.$store.dispatch('partner/insertPartner', partner, {root: true});
       }
+
     },
   }
 </script>

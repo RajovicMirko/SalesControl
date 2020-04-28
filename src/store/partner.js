@@ -35,19 +35,47 @@ const mutations = {
 
 const actions = {
     setPartner({ commit }, partnerId){
+        if(partnerId){
+            Loading.show();
+            const allData = {
+                url: SERVERPATH + `partners/${partnerId}`,
+                method: 'GET',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                //withCredentials: true
+            };
+    
+            fetchData(allData, (res) => {
+                commit('setPartner', res.data);
+                Loading.hide();
+            });
+        } else {
+            commit('setPartner');
+        }
+    },
+
+    insertPartner({ commit }, partnerObj){
         Loading.show();
-        //const myUrl = `https://wdb-shtty.run-eu-central1.goorm.io/api/partners/${partnerId}`;
         const allData = {
-            url: SERVERPATH + `partners/${partnerId}`,
-            method: 'GET',
+            url: SERVERPATH + `partners`,
+            method: 'POST',
+            data: partnerObj,
             headers: {
                 'content-type': 'application/json',
             },
             //withCredentials: true
         };
-
+        
         fetchData(allData, (res) => {
             commit('setPartner', res.data);
+
+            notify({
+                icon: "edit",
+                color: "secondary",
+                position: 'bottom',
+                message: `Uspešno ste uneli partnera ${partnerObj.name}`
+            });
             Loading.hide();
         });
     },
@@ -90,11 +118,11 @@ const getters = {
     },
 
     getOrders(state){
-        return state.orders.getOrders();
+        //return state.orders.getOrders();
     },
 
     getOrderById(state){
-        return state.orders.getOrderById();
+        //return state.orders.getOrderById();
     }
 };
 

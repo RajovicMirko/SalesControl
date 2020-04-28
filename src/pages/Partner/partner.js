@@ -3,12 +3,21 @@ import { getInitials } from '../../jsScripts/nameInitials';
 
 export class Partner{
     constructor(partner){
-        this.id = partner._id;
-        this.name = partner.name;
-        this.mob = partner.mob;
-        this.email = partner.email;
-        this.active = partner.active;
-        this.initials = getInitials(partner.name);
+        if (partner) {
+            this.id = partner._id;
+            this.name = partner.name;
+            this.mob = partner.mob;
+            this.email = partner.email;
+            this.active = partner.active;
+            this.initials = getInitials(partner.name);
+        } else {
+            this.id = '';
+            this.name = '';
+            this.mob = '';
+            this.email = '';
+            this.active = true;
+            this.initials = getInitials(this.name);
+        }
     }
 
     getModel(){
@@ -69,7 +78,7 @@ export class Partner{
                 type: 'lbl',
                 name: 'mob',
                 caption: 'Broj telefona',
-                label: formatPhoneNumber(this.mob, 'default'),
+                label: this.mob ? formatPhoneNumber(this.mob, 'default') : '',
                 class: 'big'
             },
             {
