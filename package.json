@@ -7,6 +7,7 @@
   "capacitorId": "",
   "author": "Mirko Rajovic <rajovicmirko@gmail.com>",
   "private": true,
+  "main": "server.js",
   "scripts": {
     "build": "quasar build",
     "start": "node server.js",
