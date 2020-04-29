@@ -1,1 +1,1 @@
-export const SERVERPATH = 'http://localhost:8000/api/';
+export const SERVERPATH = process.env.NODE_ENV === 'production'? 'api/' : 'http://localhost:8000/api/';
