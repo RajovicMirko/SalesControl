@@ -58,14 +58,14 @@ if (process.env.NODE_ENV === 'production'){
   app.use(express.static(__dirname + '/public/'));
 
   //Handle SPA
-  app.get(/.*/, (req,res) => res.sendFile(__dirname + '/dist/spa/index.html'));
+  app.get(/.*/, (req,res) => res.sendFile(__dirname + '/public/index.html'));
 }
 
 app.use(history());
 app.use(serveStatic(__dirname + '/dist/spa/'));
 
 //STARTING APP
-const PORT = process.env.PORT | 8000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, ()=>{
 	console.log(`Server is connected on port ${PORT}`);
 })
