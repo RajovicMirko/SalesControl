@@ -12,17 +12,6 @@ const history = require('connect-history-api-fallback');
 const app = express();
 require("./server/dbController"); //connecting to DB
 
-if (process.env.NODE_ENV === 'production'){
-  // Static folder
-  app.use(express.static(__dirname + '/public'));
-
-  //Handle SPA
-  app.get(/.*/, (req,res) => res.sendFile(__dirname));
-}
-
-app.use(history());
-app.use(serveStatic(__dirname + '/dist/spa'));
-
 const User = require('./server/Models/user');
 
 //APP USAGE AND AUTH SETUP
@@ -63,6 +52,18 @@ app.use('/api/partners', partnersRoutes);
 //orders
 const ordersRoutes = require("./server/Routes/orders");
 app.use('/api/orders', ordersRoutes);
+
+
+if (process.env.NODE_ENV === 'production'){
+  // Static folder
+  app.use(express.static(__dirname + '/public/'));
+
+  //Handle SPA
+  app.get(/.*/, (req,res) => res.sendFile(__dirname));
+}
+
+app.use(history());
+app.use(serveStatic(__dirname + '/dist/spa'));
 
 //STARTING APP
 const PORT = process.env.PORT | 8000;
