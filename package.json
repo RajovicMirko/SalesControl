@@ -1,5 +1,5 @@
 {
-  "name": "evidencija_prodaje",
+  "name": "salescontrol",
   "version": "0.0.1",
   "description": "Sales control application",
   "productName": "Sales control",
@@ -8,7 +8,6 @@
   "author": "Mirko Rajovic <rajovicmirko@gmail.com>",
   "private": true,
   "scripts": {
-    "test": "echo \"No test specified\" && exit 0",
     "build": "quasar build",
     "start": "node server.js",
     "heroku-postbuild": "npm run build"
