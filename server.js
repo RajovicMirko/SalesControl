@@ -62,7 +62,7 @@ if (process.env.NODE_ENV === 'production'){
 }
 
 app.use(history());
-app.use(serveStatic(__dirname + '/dist/spa'));
+app.use(serveStatic(__dirname + '/dist/spa/index.html'));
 
 //STARTING APP
 const PORT = process.env.PORT | 8000;
