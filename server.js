@@ -14,7 +14,7 @@ require("./server/dbController"); //connecting to DB
 
 if (process.env.NODE_ENV === 'production'){
   // Static folder
-  app.use(express.static(__dirname + '/public/'));
+  app.use(express.static(__dirname + '/public'));
 
   //Handle SPA
   app.get(/.*/, (req,res) => res.sendFile(__dirname));
@@ -67,6 +67,6 @@ app.use('/api/orders', ordersRoutes);
 //STARTING APP
 const PORT = process.env.PORT | 8000;
 const IP = process.env.IP;
-app.listen(PORT, IP, ()=>{
+app.listen(PORT, ()=>{
 	console.log(`Server is connected on port ${PORT}`);
 })
