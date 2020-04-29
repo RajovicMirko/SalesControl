@@ -64,7 +64,8 @@ module.exports = function (ctx) {
 
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
-      vueRouterMode: 'hash', // available values: 'hash', 'history'
+      scopeHoisting: true,
+      //vueRouterMode: 'hash', // available values: 'hash', 'history'
 
       // rtl: false, // https://quasar.dev/options/rtl-support
       // showProgress: false,
@@ -82,8 +83,8 @@ module.exports = function (ctx) {
 
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
     devServer: {
-      https: false,
-      //port: 8080,
+      // https: false,
+      // port: 8080,
       open: true // opens browser window automatically
     },
 
@@ -101,9 +102,9 @@ module.exports = function (ctx) {
       workboxPluginMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
       workboxOptions: {}, // only for GenerateSW
       manifest: {
-        name: 'Evidencija prodaje',
-        short_name: 'Evidencija prodaje',
-        description: 'Upravljanje prodajom i izveštavanje',
+        name: 'Sales control',
+        short_name: 'Sales control',
+        description: 'Sales control',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
@@ -141,7 +142,7 @@ module.exports = function (ctx) {
     // Full list of options: https://quasar.dev/quasar-cli/developing-cordova-apps/configuring-cordova
     cordova: {
       // noIosLegacyBuildFlag: true, // uncomment only if you know what you are doing
-      id: 'org.cordova.quasar.app'
+      // id: 'org.cordova.quasar.app'
     },
 
     // Full list of options: https://quasar.dev/quasar-cli/developing-capacitor-apps/configuring-capacitor
@@ -169,7 +170,7 @@ module.exports = function (ctx) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'evidencija_prodaje'
+        appId: 'salescontrol'
       },
 
       // More info: https://quasar.dev/quasar-cli/developing-electron-apps/node-integration

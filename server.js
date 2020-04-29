@@ -36,7 +36,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use(function(req, res, next){
 	res.locals.currentUser = req.body;
 	next();
-})
+});
 
 // ALL ROUTES
 //auth
@@ -52,7 +52,7 @@ const ordersRoutes = require("./server/Routes/orders");
 app.use('/api/orders', ordersRoutes);
 
 //STARTING APP
-const PORT = process.env.PORT | 3000;
+const PORT = process.env.PORT | 8000;
 const IP = process.env.IP;
 app.listen(PORT, IP, ()=>{
 	console.log(`Server is connected on port ${PORT}`);
