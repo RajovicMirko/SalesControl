@@ -28,7 +28,6 @@ app.use(passport.session());
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(express.static(__dirname + "/public"))
 app.use(cookieParser('secret'));
 
 passport.use(new LocalStrategy(User.authenticate()));
@@ -67,7 +66,6 @@ app.use(serveStatic(__dirname + '/dist/spa'));
 
 //STARTING APP
 const PORT = process.env.PORT | 8000;
-const IP = process.env.IP;
 app.listen(PORT, ()=>{
 	console.log(`Server is connected on port ${PORT}`);
 })

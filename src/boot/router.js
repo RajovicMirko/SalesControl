@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
 const cookie = Cookies.get('epUnPs');
 
-export default ({ router, store, Vue }) => {
+export default ({ router, store }) => {
     //CHECK IF COOKIE EXISTS
     if(cookie) store.dispatch('auth/login', cookie)
 
