@@ -6,9 +6,22 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 //const expressSession = require("express-session");
 const cookieParser = require("cookie-parser");
+const serveStatic = require('serve-static');
+const history = require('connect-history-api-fallback');
 
 const app = express();
 require("./server/dbController"); //connecting to DB
+
+if (process.env.NODE_ENV === 'production'){
+  // Static folder
+  app.use(express.static(__dirname + '/public/'));
+
+  //Handle SPA
+  app.get(/.*/, (req,res) => res.sendFile(__dirname));
+}
+
+app.use(history());
+app.use(serveStatic(__dirname + '/dist/spa'));
 
 const User = require('./server/Models/user');
 
