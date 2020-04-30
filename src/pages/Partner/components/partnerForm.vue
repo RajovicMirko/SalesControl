@@ -183,8 +183,14 @@
             },
 
             formReset(){
-                this.formDisabled = true;
-                this.partnerModel = Object.assign({}, this.partner.getModel());
+                if(this.partner.id){
+                    this.formDisabled = true;
+                    this.partnerModel = Object.assign({}, this.partner.getModel());
+                } else {
+                    this.$router.push({
+                        path: `/partners`
+                    })
+                }
             },
 
             formSave(evt){
