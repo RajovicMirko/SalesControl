@@ -55,14 +55,14 @@ app.use('/api/orders', ordersRoutes);
 
 if (process.env.NODE_ENV === 'production'){
   // Static folder
-  app.use(express.static(__dirname + '/dist/'));
+  app.use(express.static(__dirname + '/dist/spa/static'));
 
   //Handle SPA
   app.get(/.*/, (req,res) => res.sendFile(__dirname + '/dist/spa/index.html'));
 }
 
 app.use(history());
-app.use(serveStatic(__dirname + '/public/'));
+app.use(serveStatic(__dirname + '/dist/spa/'));
 
 //STARTING APP
 const PORT = process.env.PORT || 8000;
