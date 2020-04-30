@@ -15,8 +15,8 @@ export function fetchData(allData, callback){
             icon: "error",
             color: "negative",
             position: 'bottom',
-            message: `Došlo je do greške`,
-            caption: err.message
+            caption: `Error status ${err.response.status}`,
+            message: err.response.statusText,
         });
     });
 };

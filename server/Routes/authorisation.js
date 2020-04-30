@@ -7,25 +7,25 @@ const User = require('../Models/user');
 
 router.post('/login', function(req, res, next){
   passport.authenticate('local', function(err, user, info) {
-    if (err) { return res.status(401).send(err); }
+    if (err) { return res.status(401).end(); }
 	  
-    if (!user) {
-		return res.status(400).send({
-			message: 'Invalid username or password'
-		});
-	}
+		if (!user) {
+			res.statusMessage = 'Invalid username or password';
+			res.status(400).end();
+			return;
+		}
 	  
     req.login(user, function(err) {
-      	if (err) {
-			res.status(401).send(err);
-			return next(err)
-		}
-		console.log(`user ${ user.name } is logged in`);
-		  res.status(200).send(user);
-		return next();
+			if (err) {
+				res.status(401).end();
+				return next(err);
+			}
+			console.log(`user ${ user.name } is logged in`);
+			res.status(200).send(user);
+			return;
     });
   })(req, res, next);
-})
+});
 
 router.post("/register", (req, res) => {
 	var newUser = new User({
@@ -47,10 +47,9 @@ router.post("/register", (req, res) => {
 
 router.get('/logout', function(req, res){
 	req.logout();
-	res.status(200).send({
-		message: 'User is logged out'
-	})
-})
+	res.statusMessage = 'User is logged out';
+	res.status(200).end();
+});
 
 module.exports = router;
 
