@@ -1,22 +1,22 @@
 //APP SETUP
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const passport = require("passport");
-const LocalStrategy = require("passport-local");
-//const expressSession = require("express-session");
-const cookieParser = require("cookie-parser");
-const serveStatic = require('serve-static');
-const history = require('connect-history-api-fallback');
+const
+	express = require("express"),
+	bodyParser = require("body-parser"),
+	cors = require("cors"),
+	passport = require("passport"),
+	LocalStrategy = require("passport-local"),
+	expressSession = require("express-session"),
+	cookieParser = require("cookie-parser"),
+	serveStatic = require('serve-static'),
+	history = require('connect-history-api-fallback');
 
 const app = express();
 require("./server/dbController"); //connecting to DB
-
 const User = require('./server/Models/user');
 
 //APP USAGE AND AUTH SETUP
 
-app.use(require("express-session")({
+app.use(expressSession({
 	secret: "secret",
 	resave: false,
 	saveUninitialized: false,
@@ -52,20 +52,20 @@ app.use('/api/partners', partnersRoutes);
 const ordersRoutes = require("./server/Routes/orders");
 app.use('/api/orders', ordersRoutes);
 
-
+// STATIC AND SPA SETUP
 if (process.env.NODE_ENV === 'production'){
   // Static folder
-  app.use(express.static(__dirname + '/dist/spa/'));
+  app.use(express.static(__dirname + '/dist/spa'));
 
   //Handle SPA
   app.get(/.*/, (req,res) => res.sendFile(__dirname + '/dist/spa/index.html'));
 }
 
 app.use(history());
-app.use(serveStatic(__dirname + '/dist/spa/'));
+app.use(serveStatic(__dirname + '/dist/spa'));
 
 //STARTING APP
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, ()=>{
 	console.log(`Server is connected on port ${PORT}`);
-})
+});

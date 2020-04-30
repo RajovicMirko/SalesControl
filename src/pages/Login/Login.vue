@@ -60,8 +60,8 @@
         data(){
             return {
                 loginModel:{
-                    username: 'admin',
-                    password: 'admin'
+                    username: '',
+                    password: ''
                 },
                 loginForm: [
                     {
