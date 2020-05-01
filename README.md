@@ -1,6 +1,4 @@
-# Evidencija prodaje (evidencija_prodaje)
-
-Upravljanje prodajom i izveštavanje
+# Sales control
 
 ## Install the dependencies
 ```bash
