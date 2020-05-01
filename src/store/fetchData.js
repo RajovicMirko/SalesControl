@@ -11,6 +11,7 @@ export function fetchData(allData, callback){
     })
     .catch((err) => {
         Loading.hide();
+        console.log('fetch data error', err)
         notify({
             icon: "error",
             color: "negative",

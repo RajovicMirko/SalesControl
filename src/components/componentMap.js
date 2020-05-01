@@ -1,6 +1,7 @@
 //SHARED
 import btn from './Shared/button.vue';
 import bnr from './Shared/banner.vue';
+import bnrNoItemsFound from './Shared/bannerNoItemsFound.vue';
 import inPut from './Shared/input.vue';
 import check from './Shared/check.vue';
 import lbl from './Shared/lbl.vue';
@@ -26,6 +27,7 @@ const cmpMap = {
     //SHARED
     btn,
     bnr,
+    bnrNoItemsFound,
     inPut,
     check,
     lbl,

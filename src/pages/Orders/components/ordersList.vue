@@ -13,6 +13,7 @@
       >
         <component
           :is="$getComponent(orderItem.type)"
+          :value="String(i + 1)"
           v-bind="orderItem"
         ></component>
       </q-item-section>

@@ -3,9 +3,20 @@ import { Item } from './item';
 
 export class Order{
     constructor(order){
-        this.id = order.id;
+        this.id = order._id;
         this.date = order.date;
         this.items = order.items.map(item => new Item(item));
+    }
+
+    addItem(){
+      this.items.push(
+        new Item({
+          id: this.items.length,
+          code: '',
+          product: '',
+          quantity: '',
+        })
+      );
     }
 
     getOrderDate(){

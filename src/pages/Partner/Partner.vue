@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <div
-      v-if="this.$router.currentRoute.name === 'Partner' && partner"
+      v-if="this.$router.currentRoute.name === 'Partner'"
     > 
       <component
         :is="$getComponent('partnerForm')"

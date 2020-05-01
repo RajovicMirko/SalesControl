@@ -94,6 +94,7 @@ export default {
       this.essentialLinks.push({
         icon: 'code',
         title: 'GitHub project',
+        to: '',
         tag: 'a',
         target: '_blank',
         href: 'https://github.com/RajovicMirko/SalesControl'

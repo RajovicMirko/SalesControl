@@ -18,6 +18,7 @@ router.get('/:partnerId', (req, res) => {
 
 // INSERT NEW ORDER
 router.post('/:partnerId', (req, res) => {
+  console.log('insert order')
 	const partnerId = req.params.partnerId;
 	const order = req.body.order;
 	console.log(partnerId, order)

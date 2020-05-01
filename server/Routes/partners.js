@@ -33,8 +33,8 @@ router.get('/:id', (req, res) => {
 
 // INSERT NEW PARTNER
 router.post('/', (req, res) => {
-	const partner = req.body;
-	
+  const partner = req.body;
+  
 	partnersCollection.create(partner, (err, newPartner) => {
 		if(err){
 			res.status(400).send(err);

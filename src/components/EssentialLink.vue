@@ -2,6 +2,9 @@
   <q-item
     clickable
     :to="to"
+    :tag="tag"
+    :target="target"
+    :href="href"
     exact
   >
     <q-item-section
@@ -40,7 +43,22 @@ export default {
     icon: {
       type: String,
       default: ''
-    }
+    },
+
+    tag: {
+      type: String,
+      default: ''
+    },
+
+    target: {
+      type: String,
+      default: ''
+    },
+
+    href: {
+      type: String,
+      default: ''
+    },
   }
 }
 </script>

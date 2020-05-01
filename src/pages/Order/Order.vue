@@ -4,6 +4,7 @@
       :is="$getComponent('orderTbl')"
       :title="partner.name"
       v-bind="order.getOrderDataForTable()"
+      @insertItem="insertItem($event)"
       @updateItem="updateItem($event)"
       @deleteItem="deleteItem($event)"
     ></component>
@@ -25,14 +26,18 @@
     },
 
     methods: {
+      insertItem(event){
+        this.$store.dispatch('partner/insertItem', event, { root: true });
+      },
+
       updateItem(event){
-        console.log('update', event);
-        
+        event.orderId = this.order.id;
+        this.$store.dispatch('partner/updateItem', event, { root: true });
       },
 
       deleteItem(event){
-        console.log('delete', event);
-        
+        event.orderId = this.order.id;
+        this.$store.dispatch('partner/deleteItem', event, { root: true });
       }
     },
   }

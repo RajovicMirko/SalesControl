@@ -10,7 +10,7 @@
                 <!-- BIG SCREEN OPTIONS -->
                 <template
                     v-slot:buttons
-                    v-if="formDisabled === '123'"
+                    v-if="formDisabled"
                 >
                     <!-- ORDERS -->
                     <div>
@@ -69,7 +69,7 @@
                         <component
                             :is="$getComponent('btn')"
                             v-bind="btnReset"
-                            @click="formReset"
+                            @click="formReset('goBack')"
                         ></component>
                     
                     <q-space v-if="!formDisabled" />
@@ -102,147 +102,154 @@
 </template>
 
 <script>
-    export default {
-        name: 'partnerForm',
+  export default {
+    name: 'partnerForm',
 
-        props: {
-            partner: {
-                type: Object,
-                required: true
-            }
+    props: {
+      partner: {
+        type: Object,
+        required: true
+      }
+    },
+
+    data(){
+      return{
+        btnEdit:{},
+        btnReset:{},
+        btnSave:{},
+
+        btnOrders:{
+          color: "positive",
+          label: 'View orders',
+          icon: 'view_list'
         },
+        btnListSideActions:[
+          { label: 'Update', fn: this.formEdit },
+          { label: 'View orders', fn: this.ordersView },
+        ],
 
-        data(){
-            return{
-                btnEdit:{},
-                btnReset:{},
-                btnSave:{},
-
-                btnOrders:{
-                    color: "positive",
-                    label: 'Orders',
-                    icon: 'view_list'
-                },
-                btnListSideActions:[
-                    { label: 'Update', fn: this.formEdit },
-                    // { label: 'Porudžbine', fn: this.ordersView },
-                ],
-
-                formDisabled: this.partner.id !== '',
-                partnerModel: {},
-                path: this.$router.currentRoute.fullPath,
-            }
-        },
+        partnerModel: {},
+        path: this.$router.currentRoute.fullPath,
+      }
+    },
     
-        beforeMount(){
-            this.$reponsiveControl.addFunctions(this.setBtnEdit, this.setBtnReset, this.setBtnSave);
-        },
+    beforeMount(){
+      this.isNewPartner
+      this.$reponsiveControl.addFunctions(this.setBtnEdit, this.setBtnReset, this.setBtnSave);
+    },
 
-        computed:{
-            formDefinition(){
-                if(this.partner.id || this.partner.id === ''){
-                    this.partnerModel = Object.assign({}, this.partner.getModel());
-                    return Object.assign({}, this.partner.getFormModel());
-                }
-            }
-        },
-
-        methods:{
-            setBtnEdit(){
-                this.btnEdit = {
-                    color: "primary",
-                    label: this.$winSize === 'big' ? 'Update' : '',
-                    icon: 'edit'
-                }
-            },
-            
-            setBtnReset(){
-                this.btnReset = {
-                    color: "negative",
-                    label: this.$winSize === 'big' ? 'Cancel' : '',
-                    icon: 'close',
-                    type: 'reset'
-                }
-            },
-            
-            setBtnSave(){
-                this.btnSave = {
-                    color: "positive",
-                    label: this.$winSize === 'big' ? 'Save' : '',
-                    icon: 'save',
-                    type: 'submit'
-                }
-            },
-
-            ordersView(){
-                this.$emit('ordersView');
-            },
-
-            formEdit(){
-                this.formDisabled = false;
-            },
-
-            formReset(){
-                if(this.partner.id){
-                    this.formDisabled = true;
-                    this.partnerModel = Object.assign({}, this.partner.getModel());
-                } else {
-                    this.$router.push({
-                        path: `/partners`
-                    })
-                }
-            },
-
-            formSave(evt){
-                const frm = this.$refs.partnerForm
-                let formObj = {};
-                const formComponents = this.partnerModel;
-
-                Object.keys(formComponents).forEach(k => {
-                    formObj[k] = formComponents[k];
-                });
-
-                const dialogObj = {
-                    title: `${this.partner.id ? 'Update' : 'Insert' } partner`,
-                    icon: 'warning',
-                    message: `Are you sure you want to ${this.partner.id ? 'update' : 'insert' } partner?`,
-                    ok: {
-                        push: true,
-                        label: 'Yes',
-                        color: 'negative'
-                    },
-                    cancel: {
-                        push: true,
-                        label: 'No',
-                        color: 'positive'
-                    },
-                }
-                
-                frm.validate()
-                    .then(success => {
-                        if (success) {
-                            this.$dialog(
-                                dialogObj,
-                                ()=>{
-                                    if(this.partner.id){
-                                        this.$emit('updatePartner', formObj);
-                                        this.formReset();
-                                    } else {
-                                        this.$emit('insertPartner', formObj);
-                                        this.formReset();
-                                    }
-                                },
-                                ()=>{
-                                    this.formReset();
-                                }
-                            )
-                        }
-                        else {
-                            //IF FORM HAS ERRORS
-                            this.formReset();
-                        }
-                    })
-            }
+    computed:{
+      formDefinition(){
+        if(this.partner.id || this.partner.id === ''){
+          this.partnerModel = Object.assign({}, this.partner.getModel());
+          return Object.assign({}, this.partner.getFormModel());
         }
+      },
+
+      formDisabled:{
+        get(){
+          return this.$store.getters['partner/formDisabled'];
+        },
+        set(event){
+          this.$store.commit('partner/setFormDisabled', event, { root: true });
+        }
+      }
+    },
+
+  methods:{
+    setBtnEdit(){
+      this.btnEdit = {
+        color: "primary",
+        label: this.$winSize === 'big' ? 'Update' : '',
+        icon: 'edit'
+      }
+    },
+    
+    setBtnReset(){
+      this.btnReset = {
+        color: "negative",
+        label: this.$winSize === 'big' ? 'Cancel' : '',
+        icon: 'close',
+        type: 'reset'
+      }
+    },
+    
+    setBtnSave(){
+      this.btnSave = {
+        color: "positive",
+        label: this.$winSize === 'big' ? 'Save' : '',
+        icon: 'save',
+        type: 'submit'
+      }
+    },
+
+    ordersView(){
+      this.$emit('ordersView');
+    },
+
+    formEdit(){
+      this.formDisabled = false;
+    },
+
+    formReset(type = null){
+      if(this.partner.id){
+        this.partnerModel = Object.assign({}, this.partner.getModel());
+      } else {
+        if(type === 'goBack') this.$router.push({ path: `/partners` });
+      }
+      this.formDisabled = true;
+    },
+
+    formSave(evt){
+      const frm = this.$refs.partnerForm
+      let formObj = {};
+      const formComponents = this.partnerModel;
+
+      Object.keys(formComponents).forEach(k => {
+        formObj[k] = formComponents[k];
+      });
+
+      const dialogObj = {
+        title: `${this.partner.id ? 'Update' : 'Insert' } partner`,
+        icon: 'warning',
+        message: `Are you sure you want to ${this.partner.id ? 'update' : 'insert' } partner?`,
+        ok: {
+          push: true,
+          label: 'Yes',
+          color: 'negative'
+        },
+        cancel: {
+          push: true,
+          label: 'No',
+          color: 'positive'
+        },
+      }
+      
+      frm.validate()
+        .then(success => {
+          if (success) {
+            this.$dialog(
+              dialogObj,
+              ()=>{
+                if(this.partner.id){
+                  this.$emit('updatePartner', formObj);
+                  this.formReset('update');
+                } else {
+                  this.$emit('insertPartner', formObj);
+                  this.formReset('insert');
+                }
+              },
+              ()=>{
+                this.formReset();
+              }
+            )
+          }
+          else {
+            //IF FORM HAS ERRORS
+            this.formReset();
+          }
+        })
     }
+  }
+}
 </script>

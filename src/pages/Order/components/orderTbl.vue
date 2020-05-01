@@ -22,6 +22,7 @@
             <component
                 :is="$getComponent('btn')"
                 v-bind="btnAddItem"
+                @click="insertItem"
             />
         </template>
 
@@ -180,6 +181,12 @@
                 props.expand = !props.expand;
                 this.itemChange = Object.assign({}, props.row);
                 this.$refs.formItem.validate()
+            },
+
+            insertItem(){
+              this.$emit('insertItem')
+              return;
+              //this.order.addItem();
             },
 
             updateItem(){

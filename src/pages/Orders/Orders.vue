@@ -8,6 +8,12 @@
         :is="$getComponent('bnr')"
         :title="bannerTitle"
       ></component>
+      <!-- BANNER IF PARTNER DON'T HAVE ANY ORDER -->
+      <component
+        v-if="!orders.length"
+        :is="$getComponent('bnrNoItemsFound')"
+        title="No orders found"
+      ></component>
 
       <!-- ORDERS LIST -->
       <q-list separator bordered>
@@ -41,20 +47,21 @@
       },
 
       orders(){
+        this.bannerTitle = `${this.partner.name} orders`;
         return this.$store.getters['partner/getOrders'];
       }
     },
     
     beforeMount(){
-      this.$reponsiveControl.addFunctions(this.bannerTitleFn);
+      // this.$reponsiveControl.addFunctions(this.bannerTitleFn);
     },
 
     methods: {
-      bannerTitleFn(){
-        this.bannerTitle = this.$winSize === 'big'
-          ? `Pregled porudžbina za partnera ${this.partner.name}`
-          : `Porudžbine ${this.partner.name}`;
-      },
+      // bannerTitleFn(){
+      //   this.bannerTitle = this.$winSize === 'big'
+      //     ? `${this.partner.name} orders`
+      //     : `${this.partner.name} orders`;
+      // },
 
       orderView(order){
         this.$router.push({
@@ -64,8 +71,7 @@
       },
 
       deleteOrder(event){
-        console.log('deleteOrder', event);
-        
+        this.$store.dispatch('partner/deleteOrder', event, { root: true })
       },
 
     }
