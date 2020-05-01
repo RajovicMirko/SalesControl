@@ -39,7 +39,7 @@ export class Order{
             },
             {
                 type: 'lbl',
-                label: `Porudžbina na dan ${this.getOrderDate()}`
+                label: `Order on day ${this.getOrderDate()}`
             }
         ];
     }

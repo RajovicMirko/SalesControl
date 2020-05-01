@@ -13,7 +13,7 @@ export function Partner(partner = {}){
   this.name = partner.name || '';
   this.mob = partner.mob || '';
   this.email = partner.email || '';
-  this.active = partner.active || true;
+  this.active = partner ? partner.active : true;
 }
 
 Partner.prototype.init = function(partnerId){

@@ -13,7 +13,7 @@
       >
         <component
           :is="$getComponent(orderItem.type)"
-          :value="String(i + 1)"
+          :value="value"
           v-bind="orderItem"
         ></component>
       </q-item-section>
@@ -34,6 +34,10 @@
       order:{
         type: Object,
         requiered: true
+      },
+      value: {
+        type: String,
+        default: ''
       }
     },
 

@@ -61,7 +61,7 @@ const routes = [
                 component: Orders,
                 name: Orders.name,
                 meta:{
-                  name: 'Porudžbine',
+                  name: 'Orders',
                 },
                 children:[
                   {
@@ -69,7 +69,7 @@ const routes = [
                     component: Order,
                     name: Order.name,
                     meta:{
-                      name: 'Porudžbina',
+                      name: 'Order',
                     }
                   }
                 ]

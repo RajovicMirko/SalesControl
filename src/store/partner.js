@@ -104,12 +104,12 @@ const actions = {
     },
 
     insertItem({ commit }, payload){
-      console.log('insert item', payload)
+      console.log('add item', payload)
       notify({
         icon: "edit",
         color: "secondary",
         position: 'center',
-        message: `Insert item is under construction`
+        message: `Add item is under construction`
       });
     },
 
@@ -136,8 +136,7 @@ const actions = {
 
 const getters = {
     getPartner(state){
-      console.log(state.partner)
-        return state.partner;
+      return state.partner;
     },
 
     getIsNewPartner(){
@@ -153,7 +152,7 @@ const getters = {
     },
 
     getOrderById(state){
-        return state.orders.getOrderById();
+      return state.orders.getOrderById();
     }
 };
 

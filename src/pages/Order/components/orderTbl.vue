@@ -11,8 +11,8 @@
             <q-item style="padding: 0;">
                 <q-item-section>
                     <span class="text-h6">Partner: {{ title }}</span>
-                    <span class="text-subtitle2">Šifra porudžbine: {{ order.id }}</span>
-                    <span class="text-subtitle2">Na dan: {{ order.getOrderDate() }}</span>
+                    <span class="text-subtitle2">Order id: {{ order.id }}</span>
+                    <span class="text-subtitle2">Order date: {{ order.getOrderDate() }}</span>
                 </q-item-section>
             </q-item>
         </template>
@@ -136,14 +136,14 @@
                     {
                         name: 'code',
                         required: true,
-                        label: 'Šifra',
+                        label: 'Code',
                         align: 'left',
                         field: row => row.code,
                         format: val => `${val}`,
                         sortable: true
                     },
-                    { name: 'product', label: 'Naziv', field: 'product' },
-                    { name: 'quantity', label: 'Količina', field: 'quantity' },
+                    { name: 'product', label: 'Name', field: 'product' },
+                    { name: 'quantity', label: 'Quantity', field: 'quantity' },
                 ],
 
                 orderModelInit: this.order.getModel(),
@@ -160,8 +160,7 @@
                 this.btnAddItem = {
                     round: this.$winSize !== 'big',
                     color: "primary",
-                    tooltip: "Dodaj proizvod",
-                    label: this.$winSize === 'big' ? 'Dodaj proizvod' : '',
+                    label: this.$winSize === 'big' ? 'Add item' : '',
                     icon: 'add'
                 }
             },
@@ -169,8 +168,7 @@
             btnUpdateItemFn(){
                 this.btnUpdateItem = {
                     color: "positive",
-                    tooltip: "Ažuriraj proizvod",
-                    label: this.$winSize === 'big' ? 'Ažuriraj proizvod' : '',
+                    label: this.$winSize === 'big' ? 'Update item' : '',
                     icon: 'save'
                 }
             },
@@ -191,17 +189,17 @@
 
             updateItem(){
                 const dialogObj = {
-                    title: 'Ažuriranje porudžbine',
+                    title: 'Update item',
                     icon: 'warning',
-                    message: 'Da li želite da ažurirate porudžbinu?',
+                    message: 'Are you sure you want to update item?',
                     ok: {
                         push: true,
-                        label: 'Da',
+                        label: 'Yes',
                         color: 'negative'
                     },
                     cancel: {
                         push: true,
-                        label: 'Ne',
+                        label: 'No',
                         color: 'positive'
                     },
                 }
@@ -224,17 +222,17 @@
 
             deleteItem(event){
                 const dialogObj = {
-                    title: 'Brisanje porudžbine',
+                    title: 'Delete item',
                     icon: 'warning',
-                    message: 'Da li želite da obrišete porudžbinu?',
+                    message: 'Are you sure you want to delete item?',
                     ok: {
                         push: true,
-                        label: 'Da',
+                        label: 'Yes',
                         color: 'negative'
                     },
                     cancel: {
                         push: true,
-                        label: 'Ne',
+                        label: 'No',
                         color: 'positive'
                     },
                 }

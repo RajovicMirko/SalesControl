@@ -18,10 +18,11 @@
       <!-- ORDERS LIST -->
       <q-list separator bordered>
         <component
-          v-for="order in orders"
+          v-for="(order, i) in orders"
           :key="order.id"
           :is="$getComponent('ordersList')"
           v-bind="{ order }"
+          :value="String(i + 1)"
           @click="orderView($event)"
           @deleteOrder="deleteOrder($event)"
         ></component>
