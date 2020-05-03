@@ -75,6 +75,7 @@ export default {
       pj: packageJson,
       isHomeRoute: true,
       breadcrumbs: [],
+      essentialLinks: [],
       essentialLinks: this.$router.options.routes[0].children
         .filter(route => route.drowerSettings)
         .map(route => route.drowerSettings),
@@ -90,6 +91,7 @@ export default {
 
   beforeMount() {
       this.isHomeRoute = this.$router.currentRoute.name === 'Home';
+
       this.breadcrumbs = this.$router.$breadcrumbs;
       this.essentialLinks.push({
         icon: 'code',
