@@ -1,10 +1,11 @@
-import { appSettings } from '../../db/appSettings';
+//import { appSettings } from '../../db/appSettings';
 
 const state = {
-    appSettings: {},
+    appSettings: {
+        idPrefixNumeric: '00000',
+        idPrefixText: ''
+    }
 };
-
-state.appSettings = appSettings;
 
 const mutations = {};
 const actions = {};
