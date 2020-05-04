@@ -1,4 +1,6 @@
 # Sales control
+This is express app, created using Node.js, Vue.js, Vuex, Quasar, MongoDB Atlas...
+
 ## Heroku live - https://salescontrolapp.herokuapp.com/#/
 
 ## Install the dependencies
