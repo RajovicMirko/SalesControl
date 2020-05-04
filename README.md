@@ -1,4 +1,5 @@
 # Sales control
+## Heroku live - https://salescontrolapp.herokuapp.com/#/
 
 ## Install the dependencies
 ```bash
