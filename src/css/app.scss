@@ -65,14 +65,14 @@ main{
     
         &-actions{
             @extend .q-card-partner-form;
-            margin: 10px 10px 5px 10px;
+            margin: 10px 10px 5px 0;
         }
     }
 
     &__actions{
         @extend .q-card;
         padding: 0;
-        margin: 10px 30px 5px 30px;
+        margin: 10px 30px 5px 20px;
     }
 }
 

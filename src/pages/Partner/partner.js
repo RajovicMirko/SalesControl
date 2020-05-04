@@ -130,7 +130,7 @@ Partner.prototype.getFormModel = function(){
           id: 'active',
           name: 'check',
           label: 'Is active',
-          leftLabel: true
+          //leftLabel: true
       }
   ];
 }
@@ -168,6 +168,7 @@ Partner.prototype.getListModel = function(){
           label: 'Is active',
           leftLabel: true,
           disable: true,
+          side: true,
           value: this.active
       }
   ]

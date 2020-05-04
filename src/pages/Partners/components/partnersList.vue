@@ -10,6 +10,7 @@
         :key="i"
         :avatar="partnerItem.type === 'avatarInitials'"
         :class="partnerItem.class"
+        :side="partnerItem.side"
       >
         <component
           :is="$getComponent(partnerItem.type)"
