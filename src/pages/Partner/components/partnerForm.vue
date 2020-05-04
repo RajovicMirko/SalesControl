@@ -134,7 +134,6 @@
     },
     
     beforeMount(){
-      this.isNewPartner
       this.$reponsiveControl.addFunctions(this.setBtnEdit, this.setBtnReset, this.setBtnSave);
     },
 
